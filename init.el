@@ -99,6 +99,17 @@
 (use-package magit :defer t
   :bind (("C-c m" . magit)))
 
+;; Flycheck
+(use-package flycheck :defer t)
+(add-hook 'eglot-managed-mode-hook (lambda ()
+				     (flymake-mode -1)
+				     (flycheck-mode)))
+
+;; Yasnippet
+(use-package yasnippet
+  :init (yas-global-mode 1))  ;; Enable Yasnippet globally
+(use-package yasnippet-snippets :defer t)
+
 ;; And then at the end of it all
 (circadian-setup)
 
