@@ -44,7 +44,7 @@
 (use-package eglot :defer t :straight nil :ensure nil
   :init (add-hook 'c++-mode-hook #'eglot-ensure))
 
-;; Corfu
+;; Company
 (use-package company
   :hook (prog-mode))
 
@@ -56,6 +56,7 @@
 (use-package vertico :ensure t
   :init (vertico-mode))
 
+;; Modeline
 (use-package mood-line
   :init (mood-line-mode)
   :custom (mood-line-glyph-alist mood-line-glyphs-ascii))
@@ -93,5 +94,11 @@
   :config
   (setq circadian-themes '((:sunrise . doom-earl-grey)
                            (:sunset . gruber-darkest))))
+
+;; Git intergration
+(use-package magit :defer t
+  :bind (("C-c m" . magit)))
+
+;; And then at the end of it all
 (circadian-setup)
 

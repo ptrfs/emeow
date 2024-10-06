@@ -1,7 +1,8 @@
-
+;; Puts autosave stuff in /tmp so it doesnt fill out my config
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
+;; From Hikari's config
 (setq
    backup-by-copying t      ; don't clobber symlinks
    backup-directory-alist
@@ -33,6 +34,7 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;; Welcome buffer stuff
 (defun ar/show-welcome-buffer ()
   "Show *Welcome* buffer."
   (with-current-buffer (get-buffer-create "*Welcome*")
