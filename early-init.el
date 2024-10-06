@@ -81,3 +81,16 @@
 (setq display-time-24hr-format t)
 (setq inhibit-major-mode 'fundamental-mode)
 
+(add-hook 'smartparens-mode-hook (lambda ()
+				   ;; Auto indent
+				       (defun indent-between-pair (&rest _ignored)
+					 (newline)
+					 (indent-according-to-mode)
+					 (forward-line -1)
+					 (indent-according-to-mode))
+				       
+				       (sp-local-pair 'prog-mode "{" nil :post-handlers '((indent-between-pair "RET")))
+				       (sp-local-pair 'prog-mode "[" nil :post-handlers '((indent-between-pair "RET")))
+				       (sp-local-pair 'prog-mode "(" nil :post-handlers '((indent-between-pair "RET")))))
+
+

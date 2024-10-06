@@ -42,10 +42,15 @@
 
 ;; LSP
 (use-package eglot :defer t :straight nil :ensure nil
-  :init (add-hook 'c++-mode-hook #'eglot-ensure))
+  :init (add-hook 'c++-mode-hook #'eglot-ensure)
+  (add-hook 'python-mode-hook #'eglot-ensure))
 
 ;; Company
 (use-package company
+  :custom
+  (company-backends '((company-capf :with company-yasnippet) ;; Use Company with CAPF and Yasnippet
+                      company-files
+                      (company-dabbrev-code company-keywords)))
   :hook (prog-mode))
 
 (use-package company-box
@@ -106,8 +111,8 @@
 				     (flycheck-mode)))
 
 ;; Yasnippet
-(use-package yasnippet
-  :init (yas-global-mode 1))  ;; Enable Yasnippet globally
+(use-package yasnippet :defer t
+  :init (add-hook 'eglot-managed-mode-hook #'yas-minor-mode))  ;; Enable Yasnippet globally
 (use-package yasnippet-snippets :defer t)
 
 ;; And then at the end of it all
